@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern NFT Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=14">
+</head>
+
+<body>
+  <div id="scroll-container">
+    <div class="sticky-wrapper">
+      <canvas id="hero-canvas"></canvas>
+
+      <!-- Typography -->
+      <div class="hero-overlay">
+        <h1 class="hero-title">DISCOVER<br>THE FUTURE</h1>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <div class="line"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="nft-collection" id="nftSection">
+    <div class="glow" id="glow"></div>
+    <div class="container">
+
+      <div class="section-kicker">
+        <h2 class="reveal"><span>NFT <span class="thin shimmer">COLLECTION</span></span></h2>
+      </div>
+
+      <div class="statement">
+        <div class="reveal"><span><span class="muted">DEPICT THE MIGHTY</span> <span class="tag-pill">NFT</span> <span class="bright shimmer">GODDESSES</span></span></div>
+        <div class="reveal"><span><span class="muted">AND GODS OF THE</span> <span class="bright shimmer">ANCIENT WORLD</span></span></div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-block">
+          <span class="num">[01]</span>
+          <p>By owning an NFT card, you become a part of history culture, because Greek mythology has been an inexhaustible source of inspiration for artists and writers for thousands of years.</p>
+        </div>
+        <div class="info-block">
+          <span class="num">[02]</span>
+          <p>The NFT market is growing rapidly and our collection has the potential to become a valuable asset in your portfolio.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="mythos-section" id="mythosSection">
+    
+    <div class="mythos-carousel-container">
+      <div class="radial-glow" id="radialGlow"></div>
+      <div class="carousel-track" id="mythosTrack">
+        <div class="carousel-item active">
+          <img src="images/ChatGPT Image Jul 16, 2026, 02_37_54 PM.png" alt="Bust 1">
+        </div>
+        <div class="carousel-item next">
+          <img src="images/ChatGPT Image Jul 16, 2026, 02_38_02 PM.png" alt="Bust 2">
+        </div>
+        <div class="carousel-item hidden-next">
+          <img src="images/ChatGPT Image Jul 16, 2026, 02_38_08 PM.png" alt="Bust 3">
+        </div>
+        <div class="carousel-item prev">
+          <img src="images/ChatGPT Image Jul 16, 2026, 02_38_13 PM.png" alt="Bust 4">
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay elements -->
+    <div class="mythos-overlay">
+      
+      <div class="mythos-top-left">
+        <h2 class="title-mythos" id="mythosTitle">MYTHOS</h2>
+        <div class="mythos-meta">
+          <span class="mythos-version" id="mythosVersion">2.0</span>
+          <span class="mythos-desc">Exclusive NFT<br>Collection</span>
+        </div>
+      </div>
+
+      <div class="mythos-center-top">
+        <span class="carousel-counter" id="carouselCounter">[01/04]</span>
+      </div>
+
+      <div class="mythos-center-bottom">
+        <div class="carousel-nav">
+          <button class="btn-arrow" id="prevBtn"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+          <button class="btn-arrow" id="nextBtn"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+        </div>
+      </div>
+
+      <div class="mythos-right-middle">
+        <span class="info-index" id="infoIndex">[01]</span>
+        <h3 class="info-title" id="infoTitle">Modern Renaissance</h3>
+        <div class="info-buttons">
+          <button class="btn-solid">Buy</button>
+          <button class="btn-outline">Learn More</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="main.js?v=4"></script>
+</body>
+
+</html>
