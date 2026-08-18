@@ -308,6 +308,9 @@ if (section) {
     gsap.set('.mythos-center-bottom', { opacity: 0, y: 30 });
     gsap.set('.carousel-track', { opacity: 0, scale: 0.85 });
     gsap.set('.radial-glow', { opacity: 0, scale: 0.5 });
+    // Hide split-text letters — GSAP reveals them in the timeline below
+    gsap.set('#mythosTitle .letter', { opacity: 0, scale: 0, y: 40, rotation: -15 });
+    gsap.set('#mythosVersion .letter', { opacity: 0, scale: 0, y: 40, rotation: -15 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
