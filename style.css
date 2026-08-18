@@ -1848,6 +1848,9 @@ body {
     .roadmap-headline{ margin-bottom:56px; }
 
     /* Timeline shifts to the left edge, all cards stack on the right */
+    .timeline{
+      padding-right:16px;
+    }
     .timeline-line{
       left:20px;
       margin-left:0;
@@ -1886,6 +1889,7 @@ body {
   @media (max-width:480px){
     .roadmap-section{ padding:84px 0 80px; }
     .roadmap-headline{ margin-bottom:48px; font-size:clamp(18px,4.5vw,24px); }
+    .timeline{ padding-right:12px; }
     .phase{ margin-bottom:40px; }
     .phase-card{ padding:22px 20px; }
     .phase-index{ font-size:16px; }
@@ -1897,6 +1901,7 @@ body {
 
   @media (max-width:380px){
     .timeline-line{ left:14px; }
+    .timeline{ padding-right:8px; }
     .phase{ grid-template-columns:28px 1fr; column-gap:14px; }
     .phase-card{ padding:20px 16px; }
   }
