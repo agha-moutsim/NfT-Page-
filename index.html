@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="style.css?v=35">
 </head>
 
 <body>
@@ -18,13 +18,17 @@
 
       <!-- Typography -->
       <div class="hero-overlay">
+        <span class="hero-kicker">[ NFT COLLECTION / MYTHOS ]</span>
         <h1 class="hero-title">DISCOVER<br>THE FUTURE</h1>
       </div>
 
       <!-- Scroll Indicator -->
       <div class="scroll-indicator">
-        <span>Scroll to explore</span>
-        <div class="line"></div>
+        <div class="scroll-badge">
+          <div class="scroll-ring"></div>
+          <div class="scroll-ring-inner"></div>
+          <span class="scroll-label">Scroll</span>
+        </div>
       </div>
     </div>
   </div>
@@ -126,6 +130,312 @@
     </div>
   </section>
 
+  <!-- ========== MINT / DROP — MARBLE STATUE REVEAL ========== -->
+  <section class="mint-section" id="mintSection">
+    <div class="mint-sticky">
+      <canvas id="mint-canvas"></canvas>
+      <div class="mint-vignette"></div>
+      <div class="mint-overlay">
+        <span class="mint-kicker">[ THE INNER SANCTUM ]</span>
+        <div class="mint-revealed" id="mintRevealed">
+          <h2 class="mint-deity-name">MODERN RENAISSANCE</h2>
+          <p class="mint-price">0.08 ETH</p>
+          <button class="mint-btn" id="mintBtn"><span>MINT YOUR DEITY</span></button>
+          <span class="mint-note">Connect your wallet to begin the ritual.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== STATS + SOCIAL PROOF ========== -->
+  <section class="stats-section" id="statsSection">
+    <div class="stats-bg-glow"></div>
+    <div class="container">
+
+      <div class="section-kicker">
+        <h2 class="reveal"><span>BY THE <span class="thin shimmer">NUMBERS</span></span></h2>
+      </div>
+
+      <div class="stats-headline">
+        <div class="reveal"><span><span class="muted">TRUSTED BY COLLECTORS</span> <span class="bright shimmer">WORLDWIDE</span></span></div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-num" data-count="10000">0</span>
+          <span class="stat-label">Total Supply</span>
+          <span class="stat-bar"><span class="stat-bar-fill" data-fill="64%"></span></span>
+          <span class="stat-sub">64% minted</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-count="6421">0</span>
+          <span class="stat-label">Minted</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-count="3980" data-suffix="+">0</span>
+          <span class="stat-label">Holders</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num" data-count="0.42" data-decimals="2" data-suffix=" ETH">0 ETH</span>
+          <span class="stat-label">Floor Price</span>
+        </div>
+      </div>
+
+      <div class="marquee">
+        <span class="marquee-label">[ AS FEATURED IN ]</span>
+        <div class="marquee-track">
+          <div class="marquee-content">
+            <span>OPENSEA</span><span class="marquee-dot">/</span>
+            <span>RARIBLE</span><span class="marquee-dot">/</span>
+            <span>MAGIC EDEN</span><span class="marquee-dot">/</span>
+            <span>NFT NOW</span><span class="marquee-dot">/</span>
+            <span>THE DEFIANT</span><span class="marquee-dot">/</span>
+            <span>COINTELEGRAPH</span><span class="marquee-dot">/</span>
+            <span>DAPP RADAR</span><span class="marquee-dot">/</span>
+          </div>
+          <div class="marquee-content" aria-hidden="true">
+            <span>OPENSEA</span><span class="marquee-dot">/</span>
+            <span>RARIBLE</span><span class="marquee-dot">/</span>
+            <span>MAGIC EDEN</span><span class="marquee-dot">/</span>
+            <span>NFT NOW</span><span class="marquee-dot">/</span>
+            <span>THE DEFIANT</span><span class="marquee-dot">/</span>
+            <span>COINTELEGRAPH</span><span class="marquee-dot">/</span>
+            <span>DAPP RADAR</span><span class="marquee-dot">/</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="community-row">
+        <div class="community-pill">
+          <span class="pulse-dot"></span>
+          <span class="community-text"><span class="community-count" data-count="12847">0</span> members in Discord</span>
+        </div>
+        <button class="community-cta">Join the Cult</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== ROADMAP TIMELINE ========== -->
+  <section class="roadmap-section" id="roadmapSection">
+    <div class="roadmap-bg-glow" aria-hidden="true"></div>
+    <div class="container">
+
+      <div class="section-kicker">
+        <h2 class="reveal"><span>THE <span class="thin shimmer">ROAD AHEAD</span></span></h2>
+      </div>
+
+      <div class="roadmap-headline">
+        <div class="reveal"><span><span class="muted">WHAT LIES AHEAD</span> <span class="bright shimmer">FOR THE PANTHEON</span></span></div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <div class="timeline-line" aria-hidden="true">
+          <span class="timeline-fill" id="timelineFill"></span>
+        </div>
+
+        <div class="phase left done">
+          <div class="phase-node"><span class="node-dot"></span></div>
+          <div class="phase-card">
+            <div class="phase-head">
+              <span class="phase-index">[01]</span>
+              <span class="phase-status status-done"><span class="status-check">&#10003;</span>Done</span>
+            </div>
+            <h3 class="phase-title">Awaken the Pantheon</h3>
+            <ul class="phase-list">
+              <li>Genesis mint goes live</li>
+              <li>Contract audited &amp; deployed</li>
+              <li>Reveal ritual complete</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase right live">
+          <div class="phase-node"><span class="node-dot"></span></div>
+          <div class="phase-card">
+            <div class="phase-head">
+              <span class="phase-index">[02]</span>
+              <span class="phase-status status-live"><span class="status-dot"></span>Live</span>
+            </div>
+            <h3 class="phase-title">Summon the DAO</h3>
+            <ul class="phase-list">
+              <li>Governance temple opens</li>
+              <li>Treasury seeded from royalties</li>
+              <li>First community proposal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase left upcoming">
+          <div class="phase-node"><span class="node-dot"></span></div>
+          <div class="phase-card">
+            <div class="phase-head">
+              <span class="phase-index">[03]</span>
+              <span class="phase-status status-upcoming">Upcoming</span>
+            </div>
+            <h3 class="phase-title">Open the Gates</h3>
+            <ul class="phase-list">
+              <li>Staking sanctum activates</li>
+              <li>Companion airdrops to holders</li>
+              <li>Cross-chain bridges open</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase right upcoming">
+          <div class="phase-node"><span class="node-dot"></span></div>
+          <div class="phase-card">
+            <div class="phase-head">
+              <span class="phase-index">[04]</span>
+              <span class="phase-status status-upcoming">Upcoming</span>
+            </div>
+            <h3 class="phase-title">Ascend</h3>
+            <ul class="phase-list">
+              <li>IRL touring exhibition</li>
+              <li>Physical collectibles &amp; lore book</li>
+              <li>Legacy vault etched on-chain</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FAQ + FINAL CTA ========== -->
+  <section class="faq-section" id="faqSection">
+    <div class="faq-bg-glow" aria-hidden="true"></div>
+    <div class="container">
+
+      <div class="section-kicker faq-kicker">
+        <h2 class="reveal"><span>QUESTIONS <span class="thin shimmer">&amp; RITES</span></span></h2>
+      </div>
+
+      <div class="faq-headline">
+        <div class="reveal"><span><span class="muted">EVERYTHING YOU NEED</span> <span class="bright shimmer">BEFORE YOU MINT</span></span></div>
+      </div>
+
+      <div class="faq-list" id="faqList">
+
+        <div class="faq-item" data-faq>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">
+            <span class="faq-q-text">How do I mint a deity?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq-answer-inner">
+              Summon a compatible wallet (MetaMask, Rainbow, or Coinbase) above, click <em>MINT YOUR DEITY</em>, and approve the ritual transaction. Your deity is bound to your wallet the moment the block confirms.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">
+            <span class="faq-q-text">What does minting cost?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq-answer-inner">
+              Each deity demands an offering of <strong>0.08 ETH</strong> plus gas. No allowlist, no tiers &mdash; all are equal before the pantheon.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">
+            <span class="faq-q-text">When does the mint go live?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq-answer-inner">
+              The gates are open now and seal in 7 days. Once sealed, the remaining deities are burned and the supply becomes fixed forever.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">
+            <span class="faq-q-text">What chain is the collection on?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq-answer-inner">
+              The collection is etched onto the <strong>Ethereum mainnet</strong> &mdash; the most secure ledger for immortal assets.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">
+            <span class="faq-q-text">What do I get as a holder?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="faq-answer-inner">
+              A 1-of-10,000 deity card, DAO governance rights, staking rewards, companion airdrops, and access to every phase of the roadmap ahead.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" data-faq>
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">
+            <span class="faq-q-text">Can I resell my deity?</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="faq-answer-inner">
+              Yes &mdash; trade freely on OpenSea and secondary markets. A 5% royalty returns to the treasury to fund the DAO&rsquo;s future rituals.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ===== Final CTA banner (full-bleed) ===== -->
+    <div class="cta-banner" id="ctaBanner">
+      <div class="cta-bg" aria-hidden="true"></div>
+      <div class="cta-content">
+        <span class="cta-kicker">[ THE GATES CLOSE SOON ]</span>
+        <h2 class="cta-title">CLAIM YOUR DEITY</h2>
+        <p class="cta-price">0.08 ETH &middot; 64% MINTED</p>
+        <div class="cta-countdown" id="ctaCountdown" aria-live="polite">
+          <span class="cd-block"><span class="cd-num" id="cdDays">06</span><span class="cd-label">Days</span></span>
+          <span class="cd-sep">:</span>
+          <span class="cd-block"><span class="cd-num" id="cdHours">14</span><span class="cd-label">Hrs</span></span>
+          <span class="cd-sep">:</span>
+          <span class="cd-block"><span class="cd-num" id="cdMins">22</span><span class="cd-label">Min</span></span>
+          <span class="cd-sep">:</span>
+          <span class="cd-block"><span class="cd-num" id="cdSecs">10</span><span class="cd-label">Sec</span></span>
+        </div>
+        <div class="cta-buttons">
+          <button class="cta-mint" id="ctaMintBtn"><span>MINT NOW</span></button>
+          <button class="cta-discord">Join Discord</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========== MINIMAL FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-glow" aria-hidden="true"></div>
+    <div class="footer-inner">
+      <div class="footer-wordmark" aria-label="MYTHOS">MYTHOS</div>
+      <div class="footer-divider" aria-hidden="true"></div>
+      <div class="footer-bottom">
+        <nav class="footer-social">
+          <a href="#" class="footer-link">Twitter</a>
+          <a href="#" class="footer-link">Discord</a>
+          <a href="#" class="footer-link">OpenSea</a>
+        </nav>
+        <span class="footer-copy">&copy; 2026 MYTHOS &middot; All deities reserved</span>
+      </div>
+    </div>
+  </footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
@@ -136,8 +446,12 @@
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-  <script src="main.js?v=4"></script>
-  <script src="temple.js?v=3"></script>
+  <script src="main.js?v=6"></script>
+  <script src="temple.js?v=4"></script>
+  <script src="mint.js?v=6"></script>
+  <script src="stats.js?v=1"></script>
+  <script src="roadmap.js?v=2"></script>
+  <script src="faq.js?v=2"></script>
 </body>
 
 </html>

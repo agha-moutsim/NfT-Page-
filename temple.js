@@ -8,9 +8,14 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- Mobile detection ---- */
+  var isTouch = window.matchMedia('(pointer: coarse)').matches;
+  var isMobile = isTouch || window.innerWidth < 768;
+  var dprCap = isMobile ? 1.5 : 2;
+
   /* ---- Renderer ---- */
   var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -22,7 +27,14 @@
   scene.background = new THREE.Color(0x070b10);
   scene.fog = new THREE.FogExp2(0x070b10, 0.04);
 
-  var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 200);
+  function getCameraFov() {
+    var aspect = window.innerWidth / window.innerHeight;
+    /* Wider FOV on narrow/mobile screens so the hall and cards stay visible */
+    if (aspect < 0.6) return 72;
+    if (aspect < 0.85) return 65;
+    return 55;
+  }
+  var camera = new THREE.PerspectiveCamera(getCameraFov(), window.innerWidth / window.innerHeight, 0.1, 200);
   camera.position.set(0, 2.2, 14);
 
   /* ---- Procedural gradient environment map (no external HDR) ---- */
@@ -59,6 +71,9 @@
   floor.position.set(0, 0, -10);
   scene.add(floor);
 
+  /* ---- Scene layout scale (narrower hall on mobile) ---- */
+  var layoutScale = (window.innerWidth / window.innerHeight < 0.75) ? 0.78 : 1.0;
+
   /* ---- Doric columns, two rows ---- */
   var stoneMat = new THREE.MeshStandardMaterial({
     color: 0x141a22, metalness: 0.55, roughness: 0.38, envMapIntensity: 1.0
@@ -70,8 +85,9 @@
   var shaftGeo = new THREE.CylinderGeometry(0.7, 0.82, 12, 28, 1);
   var baseGeo = new THREE.BoxGeometry(1.9, 0.6, 1.9);
   var capGeo = new THREE.BoxGeometry(1.9, 0.5, 1.9);
+  var colX = 7.2 * layoutScale;
   for (var z = 16; z >= -32; z -= 6) {
-    [-7.2, 7.2].forEach(function (x) {
+    [-colX, colX].forEach(function (x) {
       var shaft = new THREE.Mesh(shaftGeo, stoneMat); shaft.position.set(x, 6, z); scene.add(shaft);
       var base = new THREE.Mesh(baseGeo, goldMat); base.position.set(x, 0.3, z); scene.add(base);
       var cap = new THREE.Mesh(capGeo, goldMat); cap.position.set(x, 12.25, z); scene.add(cap);
@@ -103,8 +119,10 @@
   var loader = new THREE.TextureLoader();
   var cards = [];
 
+  var cardScale = isMobile ? 1.15 : 1.0;
   deityImages.forEach(function (src, i) {
     var group = new THREE.Group();
+    group.scale.set(cardScale, cardScale, cardScale);
 
     var frameMat = new THREE.MeshStandardMaterial({
       color: 0xd8b671, metalness: 1.0, roughness: 0.25,
@@ -179,7 +197,7 @@
     var p2 = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 14), bm);
     p2.rotation.y = Math.PI / 2;
     grp.add(p1); grp.add(p2);
-    grp.position.set((i % 2 === 0 ? -1.8 : 1.8), 7, bz);
+    grp.position.set((i % 2 === 0 ? -1.8 * layoutScale : 1.8 * layoutScale), 7, bz);
     grp.rotation.z = (i % 2 === 0 ? 0.3 : -0.3);
     grp.userData.mat = bm;
     grp.userData.baseOp = 0.5;
@@ -200,7 +218,7 @@
     return new THREE.CanvasTexture(c);
   })();
 
-  var DUST = 520;
+  var DUST = isMobile ? 240 : 520;
   var dPos = new Float32Array(DUST * 3);
   var dPhase = new Float32Array(DUST);
   var dSpeed = new Float32Array(DUST);
@@ -225,8 +243,9 @@
   if (typeof THREE.EffectComposer !== 'undefined') {
     composer = new THREE.EffectComposer(renderer);
     composer.addPass(new THREE.RenderPass(scene, camera));
+    var bloomRes = isMobile ? 0.6 : 1.0;
     composer.addPass(new THREE.UnrealBloomPass(
-      new THREE.Vector2(window.innerWidth, window.innerHeight), 0.7, 0.5, 0.7
+      new THREE.Vector2(window.innerWidth * bloomRes, window.innerHeight * bloomRes), 0.7, 0.5, 0.7
     ));
     if (typeof THREE.GammaCorrectionShader !== 'undefined') {
       composer.addPass(new THREE.ShaderPass(THREE.GammaCorrectionShader));
@@ -262,15 +281,24 @@
     }
   }
 
-  /* ---- Mouse parallax ---- */
+  /* ---- Mouse / touch parallax ---- */
   var targetX = 0, targetY = 2.2;
   var camX = 0, camY = 2.2;
-  if (!reduceMotion) {
+  if (!reduceMotion && !isTouch) {
     window.addEventListener('mousemove', function (e) {
       var nx = e.clientX / window.innerWidth - 0.5;
       var ny = e.clientY / window.innerHeight - 0.5;
       targetX = nx * 2.4;
       targetY = 2.2 + ny * -1.3;
+    });
+  } else if (!reduceMotion && isTouch) {
+    /* Subtle tilt parallax on touch devices (does not block scroll) */
+    window.addEventListener('deviceorientation', function (e) {
+      if (!e.gamma || !e.beta) return;
+      var nx = Math.max(-1, Math.min(1, e.gamma / 45)); // left/right tilt
+      var ny = Math.max(-1, Math.min(1, (e.beta - 45) / 45)); // forward/back tilt
+      targetX = nx * 1.2;
+      targetY = 2.2 + ny * -0.8;
     });
   }
 
@@ -341,6 +369,7 @@
 
   /* ---- Resize ---- */
   window.addEventListener('resize', function () {
+    camera.fov = getCameraFov();
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
