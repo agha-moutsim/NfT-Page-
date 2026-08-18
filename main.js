@@ -372,6 +372,28 @@ if (section) {
       duration: 0.6,
       ease: 'power2.out'
     }, '-=0.4');
+
+    // ====== SAFETY NET: force visibility if ScrollTrigger hasn't fired ======
+    setTimeout(() => {
+      const tl = section.querySelector('.mythos-top-left');
+      const rm = section.querySelector('.mythos-right-middle');
+      const ct = section.querySelector('.mythos-center-top');
+      const cb = section.querySelector('.mythos-center-bottom');
+      const track = section.querySelector('.carousel-track');
+      const glow = section.querySelector('.radial-glow');
+      const allLetters = section.querySelectorAll('#mythosTitle .letter, #mythosVersion .letter');
+
+      let needsFallback = false;
+      if (tl && parseFloat(getComputedStyle(tl).opacity) < 0.1) needsFallback = true;
+
+      if (needsFallback) {
+        [{el:tl,props:{opacity:1,x:0}},{el:rm,props:{opacity:1,x:0}},
+         {el:ct,props:{opacity:1,y:0}},{el:cb,props:{opacity:1,y:0}},
+         {el:track,props:{opacity:1,scale:1}},{el:glow,props:{opacity:1,scale:1}}
+        ].forEach(o => { if (o.el) gsap.set(o.el, o.props); });
+        allLetters.forEach(l => gsap.set(l, {opacity:1, scale:1, y:0, rotation:0}));
+      }
+    }, 3500);
   }
 
   // INITIALIZE

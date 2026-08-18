@@ -961,6 +961,12 @@ body {
     display:inline-block;
     opacity:0;
     transform:scale(0) translateY(40px) rotate(-15deg);
+    /* CSS safety-net: if GSAP never fires, letters still reveal after 4s */
+    animation:mythosLetterFallback 0.6s ease forwards 4s;
+  }
+
+  @keyframes mythosLetterFallback {
+    to { opacity:1; transform:scale(1) translateY(0) rotate(0deg); }
   }
 
   .title-mythos .letter-space, .mythos-version .letter-space {
