@@ -1849,7 +1849,7 @@ body {
 
     /* Timeline shifts to the left edge, all cards stack on the right */
     .timeline{
-      padding-right:16px;
+      padding-right:20px;
     }
     .timeline-line{
       left:20px;
@@ -1861,8 +1861,8 @@ body {
 
     .phase{
       grid-template-columns:40px 1fr;
-      column-gap:20px;
-      margin-bottom:48px;
+      column-gap:24px;
+      margin-bottom:64px;
     }
 
     .phase-node{
@@ -1870,7 +1870,7 @@ body {
       justify-content:center;
       align-items:center;
       height:40px;
-      margin-top:28px;
+      margin-top:32px;
     }
 
     .phase-card,
@@ -1889,8 +1889,8 @@ body {
   @media (max-width:480px){
     .roadmap-section{ padding:84px 0 80px; }
     .roadmap-headline{ margin-bottom:48px; font-size:clamp(18px,4.5vw,24px); }
-    .timeline{ padding-right:12px; }
-    .phase{ margin-bottom:40px; }
+    .timeline{ padding-right:16px; }
+    .phase{ margin-bottom:52px; }
     .phase-card{ padding:22px 20px; }
     .phase-index{ font-size:16px; }
     .phase-status{ font-size:10px; padding:4px 10px; }
@@ -1901,8 +1901,8 @@ body {
 
   @media (max-width:380px){
     .timeline-line{ left:14px; }
-    .timeline{ padding-right:8px; }
-    .phase{ grid-template-columns:28px 1fr; column-gap:14px; }
+    .timeline{ padding-right:12px; }
+    .phase{ grid-template-columns:28px 1fr; column-gap:16px; margin-bottom:44px; }
     .phase-card{ padding:20px 16px; }
   }
 
