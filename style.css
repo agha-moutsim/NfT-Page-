@@ -1864,21 +1864,29 @@ body {
       column-gap:24px;
       margin-bottom:64px;
     }
+    .phase:last-child{ margin-bottom:0; }
 
     .phase-node{
-      grid-column:1;
+      grid-column:1 !important;
       justify-content:center;
       align-items:center;
       height:40px;
       margin-top:32px;
     }
 
+    /* Force ALL cards to identical positioning — override desktop left/right */
     .phase-card,
     .phase.left .phase-card,
     .phase.right .phase-card{
-      grid-column:2;
-      margin-left:0;
-      margin-right:0;
+      grid-column:2 !important;
+      margin-left:0 !important;
+      margin-right:0 !important;
+      transform:none !important;
+    }
+
+    /* Kill sticky hover on touch */
+    .phase-card:hover{
+      transform:none !important;
     }
 
     .phase-head{ flex-wrap:wrap; gap:12px; }

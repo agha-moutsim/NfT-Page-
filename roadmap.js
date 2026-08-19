@@ -74,6 +74,21 @@
         scrollTrigger: { trigger: timeline, start: 'top 75%' }
       });
     }
+
+    /* ===== SAFETY NET: clear any residual GSAP transforms on mobile ===== */
+    setTimeout(function () {
+      if (window.innerWidth < 768) {
+        section.querySelectorAll('.phase-card').forEach(function (c) {
+          var cs = getComputedStyle(c);
+          if (cs.transform && cs.transform !== 'none') {
+            gsap.set(c, { clearProps: 'transform' });
+          }
+          if (parseFloat(cs.opacity) < 1) {
+            gsap.set(c, { opacity: 1 });
+          }
+        });
+      }
+    }, 4000);
   } else {
     /* Reduced-motion / no-GSAP fallback: ensure everything is visible */
     var cards = section.querySelectorAll('.phase-card');
@@ -91,6 +106,12 @@
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
+      /* Clear GSAP transforms on mobile so all cards align identically */
+      if (window.innerWidth < 768 && typeof gsap !== 'undefined') {
+        section.querySelectorAll('.phase-card').forEach(function (c) {
+          gsap.set(c, { clearProps: 'transform,opacity' });
+        });
+      }
       if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
     }, 250);
   });
